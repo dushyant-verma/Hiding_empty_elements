@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    .custom-li {
+  border-right: 1px solid black;
+  padding-right: 21px;
+}
+
+.custom-li.no-border {
+  border-right: none;
+}
+
+</style>
+<body>
+    <div class="contact-details">
+        <div class="data">
+          <ul>
+            <li class="custom-li">050-5555555<i class="fas fa-phone"></i></li>
+            <li class="custom-li">mercaz@gmail.com<i class="fas fa-envelope"></i></li>
+            <li style="display: none;">
+              <i class="fas fa-globe"></i>
+            </li>
+          </ul>
+        </div>
+        <div class="tab_title">שם המרכז</div>
+        <div></div>
+      </div>
+      
+
+      
+</body>
+<script>
+    const listItems = document.querySelectorAll('.data ul li');
+    let visibleListItems = [];
+  
+    // Collect all visible <li> elements
+    listItems.forEach(function (li) {
+      if (li.style.display !== 'none' && li.textContent.trim() !== '') {
+        visibleListItems.push(li); // Add visible <li> elements to array
+      }
+    });
+  
+    // Remove the border from the last visible <li> and second-last visible <li> if applicable
+    if (visibleListItems.length > 0) {
+      // Remove borders from all <li> elements
+      listItems.forEach(function (li) {
+        li.classList.remove('no-border');
+      });
+  
+      // Apply 'no-border' class to the last visible <li> and second-last visible <li>
+      if (visibleListItems.length === 1) {
+        // Only one visible element, remove its border
+        visibleListItems[0].classList.add('no-border');
+      } else if (visibleListItems.length > 1) {
+        // If more than one visible element, remove border for the last two
+        visibleListItems[visibleListItems.length - 1].classList.add('no-border');
+        visibleListItems[visibleListItems.length - 2].classList.add('no-border');
+      }
+    }
+  </script>
+  
+</html>
